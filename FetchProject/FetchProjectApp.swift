@@ -10,11 +10,15 @@ import SwiftUI
 @main
 struct FetchProjectApp: App {
     let persistenceController = PersistenceController.shared
+    @StateObject private var vm = HomeViewModel()
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            NavigationView {
+                MealListView(menu: vm.menu.meals)
+                    .navigationBarHidden(true)
+            }
+            .environmentObject(vm)
         }
     }
 }
