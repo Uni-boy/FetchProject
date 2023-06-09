@@ -29,6 +29,8 @@ class HomeViewModel: ObservableObject {
                 self?.menu = returnedMenu
             }
             .store(in: &cancellables)
+        
+        
     }
     
     private func filterAndSortMeals(text: String, menu: Menu) -> Menu {

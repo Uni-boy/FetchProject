@@ -75,11 +75,15 @@ import Foundation
 
 import Foundation
 
-// The struct that represents a single meal
+struct MealResponse: Codable {
+    let meals: [MealDetail]
+}
+
 struct MealDetail: Codable {
     let idMeal, strMeal, strCategory: String
     let strDrinkAlternate: String?
-    let strArea, strInstructions, strMealThumb, strTags: String?
+    let strMealThumb, strInstructions: String
+    let strArea, strTags: String?
     let strYoutube: String?
     let strIngredient1, strIngredient2, strIngredient3, strIngredient4: String?
     let strIngredient5, strIngredient6, strIngredient7, strIngredient8: String?
@@ -93,22 +97,22 @@ struct MealDetail: Codable {
     let strMeasure17, strMeasure18, strMeasure19, strMeasure20: String?
     let strSource, strImageSource, strCreativeCommonsConfirmed, dateModified: String?
 
-    enum CodingKeys: String, CodingKey {
-        case idMeal, strMeal, strDrinkAlternate, strCategory
-        case strArea, strInstructions, strMealThumb, strTags
-        case strYoutube
-        case strIngredient1, strIngredient2, strIngredient3, strIngredient4
-        case strIngredient5, strIngredient6, strIngredient7, strIngredient8
-        case strIngredient9, strIngredient10, strIngredient11, strIngredient12
-        case strIngredient13, strIngredient14, strIngredient15, strIngredient16
-        case strIngredient17, strIngredient18, strIngredient19, strIngredient20
-        case strMeasure1, strMeasure2, strMeasure3, strMeasure4
-        case strMeasure5, strMeasure6, strMeasure7, strMeasure8
-        case strMeasure9, strMeasure10, strMeasure11, strMeasure12
-        case strMeasure13, strMeasure14, strMeasure15, strMeasure16
-        case strMeasure17, strMeasure18, strMeasure19, strMeasure20
-        case strSource, strImageSource, strCreativeCommonsConfirmed, dateModified
-    }
+//    enum CodingKeys: String, CodingKey {
+//        case idMeal, strMeal, strDrinkAlternate, strCategory
+//        case strArea, strInstructions, strMealThumb, strTags
+//        case strYoutube
+//        case strIngredient1, strIngredient2, strIngredient3, strIngredient4
+//        case strIngredient5, strIngredient6, strIngredient7, strIngredient8
+//        case strIngredient9, strIngredient10, strIngredient11, strIngredient12
+//        case strIngredient13, strIngredient14, strIngredient15, strIngredient16
+//        case strIngredient17, strIngredient18, strIngredient19, strIngredient20
+//        case strMeasure1, strMeasure2, strMeasure3, strMeasure4
+//        case strMeasure5, strMeasure6, strMeasure7, strMeasure8
+//        case strMeasure9, strMeasure10, strMeasure11, strMeasure12
+//        case strMeasure13, strMeasure14, strMeasure15, strMeasure16
+//        case strMeasure17, strMeasure18, strMeasure19, strMeasure20
+//        case strSource, strImageSource, strCreativeCommonsConfirmed, dateModified
+//    }
     
     var ingredients: [(String, String)] {
             var result: [(String, String)] = []

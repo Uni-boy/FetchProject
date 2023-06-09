@@ -14,7 +14,7 @@ class MealImageService {
     @Published var image: UIImage? = nil
     
     private var imageSubscription: AnyCancellable?
-    let meal: Meal
+    private let meal: Meal
     private let fileManager = LocalFileManager.instance
     private let folderName = "meal_images"
     private let imageName: String

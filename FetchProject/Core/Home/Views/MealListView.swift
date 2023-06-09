@@ -27,7 +27,9 @@ struct MealListView: View {
             ScrollView {
                 LazyVGrid(columns: [GridItem(.adaptive(minimum: 160), spacing: 15)]) {
                     ForEach(menu) { meal in
-                        MealCard(meal: meal)
+                        NavigationLink(destination: DetailView(meal: meal)) {
+                            MealCard(meal: meal)                           
+                        }
                     }
                 }
                 .padding(.top)
