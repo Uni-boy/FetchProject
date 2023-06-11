@@ -33,9 +33,9 @@ class HomeViewModel: ObservableObject {
             .store(in: &cancellables)
     }
     
-    func setMealService(mealService: MealService) {
-        self.mealService = mealService
-    }
+//    func setMealService(mealService: MealService) {
+//        self.mealService = mealService
+//    }
     
     func reloadData() {
         mealService.getMeal()
