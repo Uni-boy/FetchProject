@@ -15,27 +15,14 @@ struct MealListView: View {
     
     var body: some View {
         VStack {
-            HStack {
-                Text("\(menu.count) \(menu.count > 1 ? "meals" : "meal")")
-                    .font(.headline)
-                    .fontWeight(.medium)
-                    .opacity(0.7)
-                
-                Spacer()
-            }
+            HeaderView
             SearchBarView(searchText: $vm.searchText)
-            ScrollView {
-                LazyVGrid(columns: [GridItem(.adaptive(minimum: 160), spacing: 15)]) {
-                    ForEach(menu) { meal in
-                        NavigationLink(destination: DetailView(meal: meal)) {
-                            MealCard(meal: meal)                           
-                        }
-                    }
-                }
-                .padding(.top)
-            }
+            ListView
         }
         .padding(.horizontal)
+        .refreshable {
+            vm.reloadData()
+        }
     }
 }
 
@@ -44,6 +31,33 @@ struct MealListView_Previews: PreviewProvider {
         ScrollView {
             MealListView(menu: dev.menu)
                 .environmentObject(HomeViewModel())
+        }
+    }
+}
+
+extension MealListView {
+    
+    private var HeaderView: some View {
+        HStack {
+            Text("\(menu.count) \(menu.count > 1 ? "meals" : "meal")")
+                .font(.headline)
+                .fontWeight(.medium)
+                .opacity(0.7)
+            
+            Spacer()
+        }
+    }
+    
+    private var ListView: some View {
+        ScrollView {
+            LazyVGrid(columns: [GridItem(.adaptive(minimum: 160), spacing: 15)]) {
+                ForEach(menu) { meal in
+                    NavigationLink(destination: DetailView(meal: meal)) {
+                        MealCard(meal: meal)
+                    }
+                }
+            }
+            .padding(.top)
         }
     }
 }

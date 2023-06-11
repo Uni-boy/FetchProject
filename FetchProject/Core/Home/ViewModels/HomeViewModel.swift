@@ -13,13 +13,15 @@ class HomeViewModel: ObservableObject {
     @Published var menu: Menu = Menu(meals: [])
     @Published var searchText: String = ""
     
-    private let mealService = MealService()
+    private var mealService = MealService()
     private var cancellables = Set<AnyCancellable>()
     
     init() {
         addSubscribers()
     }
     
+    // combine the search text to generate updated results of meals
+    // store the reference to the subscriber in case of `Publisher` stop emitting events
     func addSubscribers() {
         $searchText
             .combineLatest(mealService.$menu)
@@ -29,8 +31,14 @@ class HomeViewModel: ObservableObject {
                 self?.menu = returnedMenu
             }
             .store(in: &cancellables)
-        
-        
+    }
+    
+    func setMealService(mealService: MealService) {
+        self.mealService = mealService
+    }
+    
+    func reloadData() {
+        mealService.getMeal()
     }
     
     private func filterAndSortMeals(text: String, menu: Menu) -> Menu {
@@ -39,6 +47,7 @@ class HomeViewModel: ObservableObject {
         return Menu(meals: updatedMeals)
     }
     
+    // filter according to the search bar text
     private func filterMeals(text: String, meals: [Meal]) -> [Meal] {
         guard !text.isEmpty else {
             return meals
@@ -51,6 +60,7 @@ class HomeViewModel: ObservableObject {
         })
     }
     
+    // sort function
     private func sortMeals(meals: inout [Meal]) {
         meals.sort()
     }

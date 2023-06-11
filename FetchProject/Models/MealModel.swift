@@ -17,6 +17,8 @@ struct Menu: Codable {
 }
 
 struct Meal: Identifiable, Codable, Comparable {
+    // conform to Comparable protocol
+    // implement alphabetically sort
     static func < (lhs: Meal, rhs: Meal) -> Bool {
         lhs.strMeal.lowercased() < rhs.strMeal.lowercased()
     }

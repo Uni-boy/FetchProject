@@ -8,6 +8,10 @@
 import Foundation
 import SwiftUI
 
+/*
+ set an instance in PreviewProvider
+ */
+
 extension PreviewProvider {
     static var dev: DeveloperPreview {
         return DeveloperPreview.instance

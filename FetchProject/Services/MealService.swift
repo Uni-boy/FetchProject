@@ -8,6 +8,11 @@
 import Foundation
 import Combine
 
+//protocol MealServiceProtocol {
+//  var menu: Menu { get set }
+//  func getMeal()
+//}
+
 class MealService {
     
     @Published var menu: Menu = Menu(meals: [])
@@ -31,4 +36,15 @@ class MealService {
                 self?.mealSubscription?.cancel()
             })
     }
+    
+    func setMenu(menu: Menu) {
+            self.menu = menu
+        }
 }
+
+class MockMealService: MealService {
+    override func getMeal() {
+        // We intentionally leave this blank for the mock service
+    }
+}
+

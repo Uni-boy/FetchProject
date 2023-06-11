@@ -57,6 +57,8 @@ class LocalFileManager {
         return url.appendingPathComponent(folderName)
     }
     
+    // get the URL of the folder where the image file is supposed to be located
+    // if cannot be create, return nil
     private func getURLForImage(imageName: String, folderName: String) -> URL? {
         guard let folderURL = getURLForFolder(folderName: folderName) else {
             return nil

@@ -22,6 +22,7 @@ class NetworkingManager {
         }
     }
     
+    // utilizes the Combine framework to download data from a specified URL
     static func download(url: URL) -> AnyPublisher<Data, Error> {
         return URLSession.shared.dataTaskPublisher(for: url)
             .subscribe(on: DispatchQueue.global(qos: .default))
@@ -30,6 +31,7 @@ class NetworkingManager {
             .eraseToAnyPublisher()
     }
     
+    // check the response status
     static func handelURLResponse(output: URLSession.DataTaskPublisher.Output, url: URL) throws -> Data {
         guard let response = output.response as? HTTPURLResponse,
               response.statusCode >= 200 && response.statusCode < 300 else {
@@ -38,6 +40,7 @@ class NetworkingManager {
         return output.data
     }
     
+    // handle the completion event of a Publisher
     static func handleCompletion(completion: Subscribers.Completion<Error>) {
         switch completion {
         case .finished:

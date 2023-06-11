@@ -10,6 +10,7 @@ import SwiftUI
 @main
 struct FetchProjectApp: App {
     let persistenceController = PersistenceController.shared
+    
     @StateObject private var vm = HomeViewModel()
 
     var body: some Scene {
